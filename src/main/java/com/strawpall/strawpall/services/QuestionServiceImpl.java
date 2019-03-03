@@ -88,5 +88,13 @@ public class QuestionServiceImpl implements QuestionService {
         return null;
     }
 
+    @Override
+    public void initQuestions() throws Exception {
+        addNewQuestion("Kérdés1");
+        addNewQuestion("Kérdés2");
+        addNewQuestion("Kérdés3");
+        addNewQuestion("Kérdés4");
+    }
+
 
 }

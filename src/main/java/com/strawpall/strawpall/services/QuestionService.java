@@ -19,4 +19,6 @@ public interface QuestionService {
     List<Question> getAllQuestion();
 
     Question findByText();
+
+    void initQuestions() throws Exception;
 }
