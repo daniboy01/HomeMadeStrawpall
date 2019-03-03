@@ -3,7 +3,9 @@ package com.strawpall.strawpall.services;
 import com.strawpall.strawpall.models.Answer;
 import com.strawpall.strawpall.repositories.AnswerReposiory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class AnswerServiceImpl implements AnswerService {
     private AnswerReposiory answerRepo;
 

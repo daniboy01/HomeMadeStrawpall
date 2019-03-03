@@ -5,9 +5,11 @@ import com.strawpall.strawpall.models.Question;
 import com.strawpall.strawpall.repositories.AnswerReposiory;
 import com.strawpall.strawpall.repositories.QuestionReposiory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class QuestionServiceImpl implements QuestionService {
     private QuestionReposiory questionRepo;
     private AnswerReposiory answerRepo;

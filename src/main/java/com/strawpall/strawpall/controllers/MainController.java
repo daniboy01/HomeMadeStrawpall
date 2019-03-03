@@ -13,15 +13,19 @@ public class MainController {
     private QuestionService questionService;
 
     @Autowired
-    public MainController(AnswerService answerService, QuestionService questionService) {
+    public void setAnswerService(AnswerService answerService) {
         this.answerService = answerService;
+    }
+
+    @Autowired
+    public void setQuestionService(QuestionService questionService) {
         this.questionService = questionService;
     }
 
-    @PostConstruct
-    private void init() throws Exception {
-        answerService.addNewAnswer("Ez a válasz");
-        questionService.addNewQuestion("Ez itt a kérdés");
-
-    }
+    //    @PostConstruct
+//    private void init() throws Exception {
+//        answerService.addNewAnswer("Ez a válasz");
+//        questionService.addNewQuestion("Ez itt a kérdés");
+//
+//    }
 }
