@@ -13,11 +13,13 @@ import java.util.List;
 public class QuestionServiceImpl implements QuestionService {
     private QuestionReposiory questionRepo;
     private AnswerReposiory answerRepo;
+    private AnswerService answerService;
 
     @Autowired
-    public QuestionServiceImpl(QuestionReposiory questionRepo, AnswerReposiory answerRepo) {
+    public QuestionServiceImpl(QuestionReposiory questionRepo, AnswerReposiory answerRepo, AnswerService answerService) {
         this.questionRepo = questionRepo;
         this.answerRepo = answerRepo;
+        this.answerService = answerService;
     }
 
     @Override
@@ -45,7 +47,7 @@ public class QuestionServiceImpl implements QuestionService {
     }
 
     @Override
-    public boolean addAnswerToQuestion(long questionID, long answerID){
+    public boolean addAnswerToQuestionByIDs(long questionID, long answerID){
         try {
             Question question = questionRepo.findById(questionID).get();
             Answer answer = answerRepo.findById(answerID).get();
@@ -105,6 +107,19 @@ public class QuestionServiceImpl implements QuestionService {
         addNewQuestion("Kérdés2");
         addNewQuestion("Kérdés3");
         addNewQuestion("Kérdés4");
+    }
+
+    @Override
+    public boolean addAnswerByUser(long id, String answerText) {
+        try {
+            Question actualQuestion = questionRepo.findById(id).get();
+            Answer actualAnswer = answerService.addNewAnswer(answerText);
+            addAnswerToQuestionByIDs(actualQuestion.getID(),actualAnswer.getID());
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 
 

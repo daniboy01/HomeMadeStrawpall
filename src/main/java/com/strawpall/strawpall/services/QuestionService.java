@@ -12,7 +12,7 @@ public interface QuestionService {
 
     boolean deleteQuestion(long QuiestionId);
 
-    boolean addAnswerToQuestion(long questionID, long answerID);
+    boolean addAnswerToQuestionByIDs(long questionID, long answerID);
 
     boolean removeAnswerFormQuestion(long questionID, long answerID);
 
@@ -25,4 +25,6 @@ public interface QuestionService {
     List<Answer> getAnswersFromQuestion(long questionID);
 
     void initQuestions();
+
+    boolean addAnswerByUser(long id, String answerText);
 }

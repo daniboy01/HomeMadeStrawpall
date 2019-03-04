@@ -30,6 +30,13 @@
             </th>
         </tr>
     </table>
+    <h1 class="display-3">Create answer here</h1>
+    <div>
+        <form th:action = "@{'/' + ${question.ID} + '/addAnswer'}" method="post">
+            <input type="text" name="answerText">
+            <input type="submit" value="Create">
+        </form>
+    </div>
     <p class="lead">
         <a class="btn btn-primary btn-lg" href="/" role="button">Back</a>
     </p>

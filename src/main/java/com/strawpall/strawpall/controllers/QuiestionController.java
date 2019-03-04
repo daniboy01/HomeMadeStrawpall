@@ -31,7 +31,13 @@ public class QuiestionController {
 
     @PostMapping("/{id}/addAnswer/{answerID}")
     public String addAnswerToQuestion(@PathVariable long id, @PathVariable long answerID) {
-        questionService.addAnswerToQuestion(id,answerID);
+        questionService.addAnswerToQuestionByIDs(id,answerID);
+        return "redirect:/{id}";
+    }
+
+    @PostMapping("/{id}/addAnswer")
+    public String addAnswer(@PathVariable long id,String answerText) {
+        questionService.addAnswerByUser(id,answerText);
         return "redirect:/{id}";
     }
 }
