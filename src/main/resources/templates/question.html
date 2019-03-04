@@ -18,7 +18,16 @@
         <tr class="table-primary" th:each = "answer : ${answers}">
             <th scope="row">Answer's text</th>
             <td th:text = "${answer.name}"></td>
-            <th><button>click</button></th>
+        </tr>
+    </table>
+    <table>
+        <tr class="table-primary" th:each = "oneAnswer : ${allAnswer}">
+            <th scope="row">Answer's text</th>
+            <td th:text = "${oneAnswer.name}"></td>
+            <th>
+                <form th:action = "@{'/' + ${question.ID} + '/addAnswer/' + ${oneAnswer.ID}}" method="post">>
+                    <input type="submit" value="click"></form>
+            </th>
         </tr>
     </table>
     <p class="lead">

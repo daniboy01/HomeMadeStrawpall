@@ -22,5 +22,7 @@ public interface QuestionService {
 
     Question findById(long id);
 
+    List<Answer> getAnswersFromQuestion(long questionID);
+
     void initQuestions();
 }

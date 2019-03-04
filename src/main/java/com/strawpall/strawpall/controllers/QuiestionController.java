@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
@@ -23,7 +24,14 @@ public class QuiestionController {
     @GetMapping("/{id}")
     public String getQuestionPage(@PathVariable long id, Model model) {
         model.addAttribute("question", questionService.findById(id));
-        model.addAttribute("answers",answerService.getAllAnswer());
+        model.addAttribute("allAnswer", answerService.getAllAnswer());
+        model.addAttribute("answers",questionService.getAnswersFromQuestion(id));
         return "question";
+    }
+
+    @PostMapping("/{id}/addAnswer/{answerID}")
+    public String addAnswerToQuestion(@PathVariable long id, @PathVariable long answerID) {
+        questionService.addAnswerToQuestion(id,answerID);
+        return "redirect:/{id}";
     }
 }

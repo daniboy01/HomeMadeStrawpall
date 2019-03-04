@@ -94,6 +94,12 @@ public class QuestionServiceImpl implements QuestionService {
     }
 
     @Override
+    public List<Answer> getAnswersFromQuestion(long questionID) {
+        Question actualQuestion = questionRepo.findById(questionID).get();
+        return actualQuestion.getAnswers();
+    }
+
+    @Override
     public void initQuestions(){
         addNewQuestion("Kérdés1");
         addNewQuestion("Kérdés2");
