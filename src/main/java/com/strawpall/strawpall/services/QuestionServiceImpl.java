@@ -21,10 +21,10 @@ public class QuestionServiceImpl implements QuestionService {
     }
 
     @Override
-    public boolean addNewQuestion(String text) throws Exception {
+    public boolean addNewQuestion(String text){
         try {
             Question question = new Question();
-            question.setQuestionText(text);
+            question.setName(text);
             questionRepo.save(question);
             return true;
         } catch (Exception e) {
@@ -34,7 +34,7 @@ public class QuestionServiceImpl implements QuestionService {
     }
 
     @Override
-    public boolean deleteQuestion(long quiestionId) throws Exception {
+    public boolean deleteQuestion(long quiestionId){
         try {
             questionRepo.deleteById(quiestionId);
             return true;
@@ -45,7 +45,7 @@ public class QuestionServiceImpl implements QuestionService {
     }
 
     @Override
-    public boolean addAnswerToQuestion(long questionID, long answerID) throws Exception {
+    public boolean addAnswerToQuestion(long questionID, long answerID){
         try {
             Question question = questionRepo.findById(questionID).get();
             Answer answer = answerRepo.findById(answerID).get();
@@ -61,7 +61,7 @@ public class QuestionServiceImpl implements QuestionService {
     }
 
     @Override
-    public boolean removeAnswerFormQuestion(long questionID, long answerID) throws Exception {
+    public boolean removeAnswerFormQuestion(long questionID, long answerID){
         try {
             Question question = questionRepo.findById(questionID).get();
             Answer answer = answerRepo.findById(answerID).get();
@@ -89,7 +89,12 @@ public class QuestionServiceImpl implements QuestionService {
     }
 
     @Override
-    public void initQuestions() throws Exception {
+    public Question findById(long id) {
+        return questionRepo.findById(id).get();
+    }
+
+    @Override
+    public void initQuestions(){
         addNewQuestion("Kérdés1");
         addNewQuestion("Kérdés2");
         addNewQuestion("Kérdés3");

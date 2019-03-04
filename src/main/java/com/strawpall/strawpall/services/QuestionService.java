@@ -8,17 +8,19 @@ import java.sql.SQLException;
 import java.util.List;
 
 public interface QuestionService {
-    boolean addNewQuestion(String text) throws Exception;
+    boolean addNewQuestion(String text);
 
-    boolean deleteQuestion(long QuiestionId) throws Exception;
+    boolean deleteQuestion(long QuiestionId);
 
-    boolean addAnswerToQuestion(long questionID, long answerID) throws Exception;
+    boolean addAnswerToQuestion(long questionID, long answerID);
 
-    boolean removeAnswerFormQuestion(long questionID, long answerID) throws Exception;
+    boolean removeAnswerFormQuestion(long questionID, long answerID);
 
     List<Question> getAllQuestion();
 
     Question findByText();
 
-    void initQuestions() throws Exception;
+    Question findById(long id);
+
+    void initQuestions();
 }

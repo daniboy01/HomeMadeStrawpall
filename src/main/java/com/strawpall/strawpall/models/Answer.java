@@ -10,13 +10,17 @@ public class Answer {
     @Id
     @GeneratedValue
     private long ID;
-    private String answerText;
+    private String name;
     private boolean isRight;
 
     @ManyToOne
     private Question question;
 
     public Answer() {
+    }
+
+    public Answer(String name) {
+        this.name = name;
     }
 
     public long getID() {
@@ -27,12 +31,12 @@ public class Answer {
         this.ID = ID;
     }
 
-    public String getAnswerText() {
-        return answerText;
+    public String getName() {
+        return name;
     }
 
-    public void setAnswerText(String answerText) {
-        this.answerText = answerText;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public boolean isRight() {

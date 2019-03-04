@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>HomaMadeStrawpall</title>
+    <title>Title</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="style.css">
@@ -10,32 +10,16 @@
 <body>
 <div th:insert="header :: copy"></div>
 
-<!--form to add new question start here-->
-<form action="/addQuestion" method="post">
-    <legend>Create your questions here</legend>
-    <div class="form-group row">
-        <label class="col-sm-2 col-form-label">Question's text</label>
-        <div class="col-sm-10">
-            <input type="text" class="form-control-plaintext"
-                   name="question">
-        </div>
-        <button type="submit" class="btn btn-primary">Add new question</button>
-    </div>
-</form>
-<!--form to add new question end here-->
-<!--list of questions start here-->
-<div class="jumbotron" th:each="question : ${questions}">
+<div class="jumbotron">
     <h1 class="display-3" th:text="${question.name}"></h1>
     <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to
         featured content or information.</p>
     <hr class="my-4">
     <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
     <p class="lead">
-        <a class="btn btn-primary btn-lg" th:href="@{'/' + ${question.ID}}" role="button">Learn more</a>
+        <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
     </p>
 </div>
-<!--list of questions ends here-->
-
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>

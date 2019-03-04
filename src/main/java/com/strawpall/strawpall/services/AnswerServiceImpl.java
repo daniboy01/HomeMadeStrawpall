@@ -5,36 +5,38 @@ import com.strawpall.strawpall.repositories.AnswerReposiory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class AnswerServiceImpl implements AnswerService {
     private AnswerReposiory answerRepo;
 
     @Autowired
-    public AnswerServiceImpl(AnswerReposiory answerRepo) {
+    public void setAnswerRepo(AnswerReposiory answerRepo) {
         this.answerRepo = answerRepo;
     }
 
     @Override
-    public boolean addNewAnswer(String text) throws Exception {
-        try {
-            Answer answer = new Answer();
-            answer.setAnswerText(text);
-            answerRepo.save(answer);
-            return true;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return false;
-        }
+    public Answer addNewAnswer(String text) {
+        Answer answer = new Answer();
+        answer.setName(text);
+        answerRepo.save(answer);
+        return answer;
     }
 
     @Override
-    public boolean deleteAnswer(long id) throws Exception {
-        try {
-            answerRepo.deleteById(id);
-            return true;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return false;
-        }
+    public void deleteAnswer(long id) {
+        answerRepo.deleteById(id);
     }
+
+    @Override
+    public Answer getAnswerById(long id) {
+        return answerRepo.findById(id).get();
+    }
+
+    @Override
+    public List<Answer> getAllAnswer() {
+        return answerRepo.findAll();
+    }
+
 }

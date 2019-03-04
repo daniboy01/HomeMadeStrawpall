@@ -8,5 +8,5 @@ import java.util.List;
 public interface QuestionReposiory extends CrudRepository<Question, Long> {
     List<Question> findAll();
 
-    Question findByQuestionText(String text);
+    Question findByName(String text);
 }

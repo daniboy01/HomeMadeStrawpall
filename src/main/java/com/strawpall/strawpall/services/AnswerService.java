@@ -1,10 +1,18 @@
 package com.strawpall.strawpall.services;
 
 
+import com.strawpall.strawpall.models.Answer;
 import org.springframework.stereotype.Service;
 
-public interface AnswerService {
-    boolean addNewAnswer(String text) throws Exception;
+import java.util.List;
 
-    boolean deleteAnswer(long id) throws Exception;
+public interface AnswerService {
+    Answer addNewAnswer(String text);
+
+    void deleteAnswer(long id);
+
+    Answer getAnswerById(long id);
+
+    List<Answer> getAllAnswer();
+
 }

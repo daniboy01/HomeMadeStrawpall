@@ -11,7 +11,7 @@ public class Question {
     @Id
     @GeneratedValue
     private long ID;
-    private String questionText;
+    private String name;
 
     @OneToMany(mappedBy = "question")
     private List<Answer> answers;
@@ -27,12 +27,12 @@ public class Question {
         this.ID = ID;
     }
 
-    public String getQuestionText() {
-        return questionText;
+    public String getName() {
+        return name;
     }
 
-    public void setQuestionText(String questionText) {
-        this.questionText = questionText;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public List<Answer> getAnswers() {
