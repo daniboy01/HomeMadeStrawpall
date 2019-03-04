@@ -15,4 +15,6 @@ public interface AnswerService {
 
     List<Answer> getAllAnswer();
 
+    void init();
+
 }

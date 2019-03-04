@@ -42,6 +42,7 @@ public class MainController {
     @PostConstruct
     private void init() throws Exception {
         questionService.initQuestions();
+        answerService.init();
     }
 
 }

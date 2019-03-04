@@ -23,6 +23,7 @@ public class QuiestionController {
     @GetMapping("/{id}")
     public String getQuestionPage(@PathVariable long id, Model model) {
         model.addAttribute("question", questionService.findById(id));
+        model.addAttribute("answers",answerService.getAllAnswer());
         return "question";
     }
 }

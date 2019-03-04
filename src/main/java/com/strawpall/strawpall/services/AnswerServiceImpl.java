@@ -39,4 +39,12 @@ public class AnswerServiceImpl implements AnswerService {
         return answerRepo.findAll();
     }
 
+    @Override
+    public void init() {
+        addNewAnswer("válasz1");
+        addNewAnswer("válasz2");
+        addNewAnswer("válasz3");
+        addNewAnswer("válasz4");
+    }
+
 }
