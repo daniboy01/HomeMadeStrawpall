@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>HomaMadeStrawpall</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="style.css">
@@ -11,36 +11,17 @@
 <div th:insert="header :: copy"></div>
 
 <div class="jumbotron">
-    <h1 class="display-3" th:text = "${question.ID}"></h1>
-    <p class="lead" th:text = "${question.name}"></p>
+    <h1 class="display-3" th:text="${question.ID}"></h1>
+    <p class="lead" th:text="${question.name}"></p>
     <hr class="my-4">
     <table>
-        <tr class="table-primary" th:each = "answer : ${answers}">
-            <th scope="row">Answer's text</th>
-            <td th:text = "${answer.name}"></td>
+        <tr class="table-primary" th:each="answer : ${answers}">
+            <th scope="row">Answer</th>
+            <td th:text="${answer.name}" ></td>
         </tr>
     </table>
-    <table>
-    <tr class="table-primary" th:each = "oneAnswer : ${allAnswer}">
-        <th scope="row">Answer's text</th>
-        <td th:text = "${oneAnswer.name}"></td>
-        <th>
-            <form th:action = "@{'/' + ${question.ID} + '/addAnswer/' + ${oneAnswer.ID}}" method="post">>
-                <input type="submit" value="click"></form>
-        </th>
-    </tr>
-</table>
-    <h1 class="display-3">Create answer here</h1>
-    <div>
-        <form th:action = "@{'/' + ${question.ID} + '/addAnswer'}" method="post">
-            <input type="text" name="answerText">
-            <input type="submit" value="Create">
-        </form>
-    </div>
-    <p class="lead">
-        <a class="btn btn-primary btn-lg" href="/" role="button">Back</a>
-    </p>
 </div>
+
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>

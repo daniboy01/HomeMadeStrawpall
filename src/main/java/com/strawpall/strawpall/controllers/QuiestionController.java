@@ -21,23 +21,36 @@ public class QuiestionController {
         this.answerService = answerService;
     }
 
-    @GetMapping("/{id}")
-    public String getQuestionPage(@PathVariable long id, Model model) {
-        model.addAttribute("question", questionService.findById(id));
+    @GetMapping("/{questionID}")
+    public String getQuestionPage(@PathVariable long questionID, Model model) {
+        model.addAttribute("question", questionService.findById(questionID));
         model.addAttribute("allAnswer", answerService.getAllAnswer());
-        model.addAttribute("answers",questionService.getAnswersFromQuestion(id));
+        model.addAttribute("answers",questionService.getAnswersFromQuestion(questionID));
         return "question";
     }
 
-    @PostMapping("/{id}/addAnswer/{answerID}")
-    public String addAnswerToQuestion(@PathVariable long id, @PathVariable long answerID) {
-        questionService.addAnswerToQuestionByIDs(id,answerID);
-        return "redirect:/{id}";
+    @PostMapping("/{questionID}/addAnswer/{answerID}")
+    public String addAnswerToQuestion(@PathVariable long questionID, @PathVariable long answerID) {
+        questionService.addAnswerToQuestionByIDs(questionID,answerID);
+        return "redirect:/{questionID}";
     }
 
-    @PostMapping("/{id}/addAnswer")
+    @PostMapping("/{questionID}/addAnswer")
     public String addAnswer(@PathVariable long id,String answerText) {
         questionService.addAnswerByUser(id,answerText);
-        return "redirect:/{id}";
+        return "redirect:/{questionID}";
+    }
+
+    @GetMapping("/{questionID}/fill")
+    public String fillQuestion(@PathVariable long questionID,Model model) {
+        model.addAttribute("question",questionService.findById(questionID));
+        model.addAttribute("answers",questionService.getAnswersFromQuestion(questionID));
+        return "fill";
+    }
+
+    @PostMapping("/{questionID}/fill/{answerID}")
+    public String tickOneAnswer(@PathVariable long questionID, @PathVariable long answerID) {
+//        questionService.validateQuestion(questionID, answerID);
+        return "redirect:/{questionID}/fill}";
     }
 }
