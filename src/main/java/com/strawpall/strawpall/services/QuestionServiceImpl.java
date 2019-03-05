@@ -122,5 +122,21 @@ public class QuestionServiceImpl implements QuestionService {
         }
     }
 
+    @Override
+    public String validateQuestion(long questionID, long answerID) {
+        Question question = questionRepo.findById(questionID).get();
+        Answer answer = answerRepo.findById(answerID).get();
+        String result = "";
+        if (!question.getAnswers().contains(answer)){
+            return result + "This answer is not element of question!";
+        }
+        for (Answer actualAnswer : question.getAnswers()) {
+            if (actualAnswer.isRight() && actualAnswer.equals(answer)) {
+                return result + "The answer is correct!";
+            }
+        }
+        return result + "The answer is not correct!";
+    }
+
 
 }

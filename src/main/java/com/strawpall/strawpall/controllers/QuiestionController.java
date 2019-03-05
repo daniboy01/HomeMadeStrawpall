@@ -50,7 +50,7 @@ public class QuiestionController {
 
     @PostMapping("/{questionID}/fill/{answerID}")
     public String tickOneAnswer(@PathVariable long questionID, @PathVariable long answerID) {
-//        questionService.validateQuestion(questionID, answerID);
+        questionService.validateQuestion(questionID, answerID);
         return "redirect:/{questionID}/fill}";
     }
 }

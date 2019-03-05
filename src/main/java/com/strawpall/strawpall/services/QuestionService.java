@@ -27,4 +27,6 @@ public interface QuestionService {
     void initQuestions();
 
     boolean addAnswerByUser(long id, String answerText);
+
+    String validateQuestion(long questionID, long answerID);
 }
