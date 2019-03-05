@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class QuiestionController {
     private QuestionService questionService;
     private AnswerService answerService;
+    private String result;
 
     @Autowired
     public QuiestionController(QuestionService questionService, AnswerService answerService) {
@@ -36,8 +37,8 @@ public class QuiestionController {
     }
 
     @PostMapping("/{questionID}/addAnswer")
-    public String addAnswer(@PathVariable long id,String answerText) {
-        questionService.addAnswerByUser(id,answerText);
+    public String addAnswer(@PathVariable long questionID,String answerText, boolean isRight) {
+        questionService.addAnswerByUser(questionID,answerText,isRight);
         return "redirect:/{questionID}";
     }
 
@@ -45,12 +46,13 @@ public class QuiestionController {
     public String fillQuestion(@PathVariable long questionID,Model model) {
         model.addAttribute("question",questionService.findById(questionID));
         model.addAttribute("answers",questionService.getAnswersFromQuestion(questionID));
+        model.addAttribute("result",result);
         return "fill";
     }
 
     @PostMapping("/{questionID}/fill/{answerID}")
-    public String tickOneAnswer(@PathVariable long questionID, @PathVariable long answerID) {
-        questionService.validateQuestion(questionID, answerID);
+    public String tickOneAnswer(@PathVariable long questionID, @PathVariable long answerID, @RequestParam String result) {
+        result = questionService.validateQuestion(questionID, answerID);
         return "redirect:/{questionID}/fill}";
     }
 }

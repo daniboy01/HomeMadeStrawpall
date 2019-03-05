@@ -110,10 +110,12 @@ public class QuestionServiceImpl implements QuestionService {
     }
 
     @Override
-    public boolean addAnswerByUser(long id, String answerText) {
+    public boolean addAnswerByUser(long id, String answerText, boolean isRight) {
         try {
             Question actualQuestion = questionRepo.findById(id).get();
             Answer actualAnswer = answerService.addNewAnswer(answerText);
+            actualAnswer.setRight(isRight);
+            answerRepo.save(actualAnswer);
             addAnswerToQuestionByIDs(actualQuestion.getID(),actualAnswer.getID());
             return true;
         } catch (Exception e) {
@@ -126,16 +128,16 @@ public class QuestionServiceImpl implements QuestionService {
     public String validateQuestion(long questionID, long answerID) {
         Question question = questionRepo.findById(questionID).get();
         Answer answer = answerRepo.findById(answerID).get();
-        String result = "";
+
         if (!question.getAnswers().contains(answer)){
-            return result + "This answer is not element of question!";
+            return "This answer is not element of question!";
         }
         for (Answer actualAnswer : question.getAnswers()) {
             if (actualAnswer.isRight() && actualAnswer.equals(answer)) {
-                return result + "The answer is correct!";
+                return "The answer is correct!";
             }
         }
-        return result + "The answer is not correct!";
+        return "The answer is not correct!";
     }
 
 

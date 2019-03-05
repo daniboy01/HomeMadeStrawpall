@@ -35,6 +35,7 @@
         <form th:action = "@{'/' + ${question.ID} + '/addAnswer'}" method="post">
             <input type="text" name="answerText">
             <input type="submit" value="Create">
+            <input type="checkbox" name="isRight">
         </form>
     </div>
     <p class="lead">
