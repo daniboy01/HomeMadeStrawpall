@@ -84,7 +84,6 @@ public class QuestionServiceImpl implements QuestionService {
     }
 
 
-    //todo finish this
     @Override
     public Question findByText() {
         return null;

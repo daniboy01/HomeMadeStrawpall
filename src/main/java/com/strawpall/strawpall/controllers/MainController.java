@@ -30,17 +30,17 @@ public class MainController {
     @GetMapping("/")
     public String getIndex(Model model) {
         model.addAttribute("questions", questionService.getAllQuestion());
-        return "index";
+        return "home";
     }
 
     @PostMapping("/addQuestion")
-    public String addQuestion(String question) throws Exception {
+    public String addQuestion(String question){
         questionService.addNewQuestion(question);
         return "redirect:/";
     }
 
     @PostConstruct
-    private void init() throws Exception {
+    private void init(){
         questionService.initQuestions();
         answerService.init();
     }

@@ -8,7 +8,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class QuiestionController {
@@ -51,8 +50,8 @@ public class QuiestionController {
     }
 
     @PostMapping("/{questionID}/fill/{answerID}")
-    public String tickOneAnswer(@PathVariable long questionID, @PathVariable long answerID, @RequestParam String result) {
+    public String tickOneAnswer(@PathVariable long questionID, @PathVariable long answerID) {
         result = questionService.validateQuestion(questionID, answerID);
-        return "redirect:/{questionID}/fill}";
+        return "redirect:/{questionID}/fill";
     }
 }
