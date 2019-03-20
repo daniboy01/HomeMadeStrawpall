@@ -1,5 +1,7 @@
 package com.strawpall.strawpall.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -14,6 +16,7 @@ public class Answer {
     private boolean isRight;
 
     @ManyToOne
+    @JsonIgnoreProperties("answers")
     private Question question;
 
     public Answer() {
