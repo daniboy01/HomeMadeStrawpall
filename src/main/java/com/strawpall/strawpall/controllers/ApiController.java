@@ -8,6 +8,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.constraints.Max;
+import java.util.List;
+
 @RestController
 @RequestMapping("/api")
 public class ApiController {
@@ -21,5 +24,10 @@ public class ApiController {
     @GetMapping("/question/{id}")
     public QuestionDto getQuestionById(@PathVariable long id) {
         return service.getByID(id);
+    }
+
+    @GetMapping("/allquestion")
+    public List<QuestionDto> getAllQuestion() {
+        return service.getAllQuestion();
     }
 }
